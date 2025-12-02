@@ -1,3 +1,5 @@
+# --------------------------------------------------------
+#                       Base
 # Default ignored files
 /shelf/
 /workspace.xml
@@ -6,3 +8,11 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# --------------------------------------------------------
+
+# --------------------------------------------------------
+#                       Self
+.next/
+next-env.d.ts
+node_modules/
+# --------------------------------------------------------
