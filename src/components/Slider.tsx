@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 type SwiperProps = {
     items: React.ReactNode[];
     width?: number;
+    classes?: string;
 };
 
 export default function Slider({ items, width = 300, classes }: SwiperProps) {
