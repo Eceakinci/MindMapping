@@ -4,7 +4,7 @@ import data from "../data/data.json";
 import Slider from "../src/components/Slider";
 import InputComponent from "../src/components/InputComponent";
 import DeleteComponent from "../src/components/DeleteComponent";
-import { Input } from "postcss";
+import UpdateComponent from "../src/components/UpdateComponent";
 
 export default function Page() {
     const [jsonData, setJsonData] = useState(data.data);
@@ -32,13 +32,14 @@ export default function Page() {
                     />
                 );
 
-            // case "update":
-            //     return (
-            //         // <UpdateComponent
-            //         //     data={jsonData}
-            //         //     onUpdate={handleUpdate}
-            //         // />
-            //     );
+            case "update":
+                return (
+                    <UpdateComponent
+                        key={jsonData}
+                        item={jsonData}
+                        onUpdate={handleUpdate}
+                    />
+                );
 
             case "study":
                 return (
@@ -79,6 +80,12 @@ export default function Page() {
         });
     };
 
+    const handleUpdate = (updated) => {
+        console.log(updated)
+        setJsonData((prev) =>
+            prev.map((x) => (x.word === updated.word ? updated : x))
+        );
+    };
     // Function to update JSON data
     const updateJsonData = (formData) => {
         // Example: add new entry to JSON array
@@ -109,7 +116,10 @@ export default function Page() {
                 >
                     Delete
                 </button>
-                {/* <button className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded" onClick={() => setMode("update")}>Update</button> */}
+                 <button className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded"
+                         onClick={() => setMode("update")}
+                 >Update
+                 </button>
                 <button
                     className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded"
                     onClick={() => setMode("study")}
