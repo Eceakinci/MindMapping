@@ -1,18 +1,40 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 type SwiperProps = {
     items: React.ReactNode[];
     width?: number;
     classes?: string;
+    onIndexChange?: (index: number) => void; // optional callback for parent
 };
 
-export default function Slider({ items, width = 300, classes }: SwiperProps) {
+export default function Slider({
+    items,
+    width = 300,
+    classes,
+    onIndexChange,
+}: SwiperProps) {
     const [index, setIndex] = useState(0);
     const startX = useRef<number | null>(null);
 
-    const next = () => setIndex((i) => Math.min(i + 1, items.length - 1));
-    const prev = () => setIndex((i) => Math.max(i - 1, 0));
+    // Notify parent of initial index
+    useEffect(() => {
+        onIndexChange?.(0);
+    }, [onIndexChange]);
+
+    const next = () =>
+        setIndex((i) => {
+            const newIndex = Math.min(i + 1, items.length - 1);
+            onIndexChange?.(newIndex);
+            return newIndex;
+        });
+
+    const prev = () =>
+        setIndex((i) => {
+            const newIndex = Math.max(i - 1, 0);
+            onIndexChange?.(newIndex);
+            return newIndex;
+        });
 
     const handleTouchStart = (e: React.TouchEvent) => {
         startX.current = e.touches[0].clientX;
@@ -29,33 +51,44 @@ export default function Slider({ items, width = 300, classes }: SwiperProps) {
 
         startX.current = null;
     };
+
     return (
-        <div className='overflow-hidden relative' style={{ width }}>
-            <div className='flex'
+        <div className="overflow-hidden relative" style={{ width }}>
+            {/* Slides container */}
+            <div
+                className="flex"
                 style={{
                     transition: "transform 0.3s ease",
-                    transform: `translateX(-${index * width}px)`
+                    transform: `translateX(-${index * width}px)`,
                 }}
                 onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}>
+                onTouchEnd={handleTouchEnd}
+            >
                 {items.map((item, i) => (
-                    <div key={i} style={{ width }} className={'shrink-0 ' + classes}>
+                    <div
+                        key={i}
+                        style={{ width }}
+                        className={"shrink-0 " + (classes ?? "")}
+                    >
                         {item}
                     </div>
                 ))}
             </div>
 
+            {/* Prev / Next buttons */}
             <button
                 onClick={prev}
-                className='absolute top-1/2 left-px'
-                disabled={index === 0}>
+                className="absolute top-1/2 left-1 px-2 py-1 bg-gray-200 rounded -translate-y-1/2"
+                disabled={index === 0}
+            >
                 ◀
             </button>
 
             <button
                 onClick={next}
-                className='absolute top-1/2 right-px'
-                disabled={index === items.length - 1}>
+                className="absolute top-1/2 right-1 px-2 py-1 bg-gray-200 rounded -translate-y-1/2"
+                disabled={index === items.length - 1}
+            >
                 ▶
             </button>
         </div>

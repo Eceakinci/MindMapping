@@ -2,7 +2,10 @@
 
 
 - function: json import / export
-- function: insert new items to json
+- [x] 20251210 function: insert new items to json
+- [x] 20251210 function: delete
+- [x] 20251210 function: combine coherent buttons for crud
+- [x] 20251210 fix: .idea gitignore fix
 - styling: add color code to articles
 - styling: colormode
 - accessibility: responsive tablet, mobile, pc / horizontal, vertical
