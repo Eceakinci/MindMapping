@@ -19,8 +19,9 @@ export default function Slider({
 
     // Notify parent of initial index
     useEffect(() => {
-        onIndexChange?.(0);
-    }, [onIndexChange]);
+        onIndexChange?.(index);
+    }, [index]);
+
 
     const next = () =>
         setIndex((i) => {
@@ -77,7 +78,7 @@ export default function Slider({
 
             {/* Prev / Next buttons */}
             <button
-                onClick={prev}
+                onClick={() => setIndex((i) => Math.min(i - 1, items.length - 1))}
                 className="absolute top-1/2 left-1 px-2 py-1 bg-gray-200 rounded -translate-y-1/2"
                 disabled={index === 0}
             >
@@ -85,7 +86,7 @@ export default function Slider({
             </button>
 
             <button
-                onClick={next}
+                onClick={() => setIndex((i) => Math.min(i + 1, items.length - 1))}
                 className="absolute top-1/2 right-1 px-2 py-1 bg-gray-200 rounded -translate-y-1/2"
                 disabled={index === items.length - 1}
             >
