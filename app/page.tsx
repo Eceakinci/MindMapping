@@ -9,6 +9,8 @@ import UpdateComponent from "../src/components/UpdateComponent";
 export default function Page() {
     const [jsonData, setJsonData] = useState(data.data);
     const [mode, setMode] = useState("study");
+    const [currentIndex, setCurrentIndex] = useState(0);
+
     // useEffect(() => {
     //     console.log("jsonData updated:", jsonData);
     // }, [jsonData]);
@@ -35,9 +37,10 @@ export default function Page() {
             case "update":
                 return (
                     <UpdateComponent
-                        key={jsonData}
-                        item={jsonData}
+                        item={jsonData[currentIndex]}
+                        index={currentIndex}
                         onUpdate={handleUpdate}
+                        onCancelOrSave={() => setMode("study")}
                     />
                 );
 
@@ -46,6 +49,7 @@ export default function Page() {
                     <Slider
                         width={600}
                         classes={"px-16 pt-6"}
+                        onIndexChange={setCurrentIndex}
                         items={jsonData.map((item) => (
                             <div>
                                 <p className="italic">{item.type}</p>
@@ -80,12 +84,12 @@ export default function Page() {
         });
     };
 
-    const handleUpdate = (updated) => {
-        console.log(updated)
+    const handleUpdate = (index, updatedItem) => {
         setJsonData((prev) =>
-            prev.map((x) => (x.word === updated.word ? updated : x))
+            prev.map((item, i) => (i === index ? updatedItem : item))
         );
     };
+
     // Function to update JSON data
     const updateJsonData = (formData) => {
         // Example: add new entry to JSON array

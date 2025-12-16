@@ -1,22 +1,36 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function UpdateComponent({ item, onSave }) {
-    // Handle for first render
+interface UpdateComponentProps {
+    item: {
+        type: string;
+        article: string;
+        word: string;
+        example: string;
+    };
+    index: number;
+    onUpdate: (index: number, updatedItem: any) => void;
+    onCancelOrSave: () => void;
+}
+
+export default function UpdateComponent({ item, index, onUpdate, onCancelOrSave }: UpdateComponentProps) {
+
     if(!item) return null;
 
-    const [editing, setEditing] = useState(false);
     const [temp, setTemp] = useState(item);
 
+    useEffect(() => {
+        setTemp(item);
+    }, [item]);
+
     const handleChange = (key, value) => {
-        setTemp({ ...temp, [key]: value });
+        setTemp((prev) => ({ ...prev, [key]: value }));
     };
 
 
     return (
-        <div className="p-4 border rounded-lg">
+        <div className="flex flex-col gap-4 p-4 border rounded-lg">
             {/* Editable fields */}
-
             <select
                 value={temp.type}
                 onChange={(e) => handleChange("type", e.target.value)}
@@ -54,9 +68,9 @@ export default function UpdateComponent({ item, onSave }) {
                 <button
                     className="bg-green-600 text-white px-3 py-1 rounded"
                     onClick={() => {
-                        onSave(temp);
-                        setEditing(false);
-                    }}
+                    onUpdate(index, temp);
+                    onCancelOrSave(); // study moda dön
+                }}
                 >
                     Save
                 </button>
@@ -64,8 +78,8 @@ export default function UpdateComponent({ item, onSave }) {
                 <button
                     className="bg-gray-400 text-white px-3 py-1 rounded"
                     onClick={() => {
-                        setEditing(false);
-                        setTemp(item); // revert changes
+                        setTemp(item);
+                        onCancelOrSave();
                     }}
                 >
                     Cancel
