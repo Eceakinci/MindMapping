@@ -79,18 +79,18 @@ export default function Slider({
             {/* Prev / Next buttons */}
             <button
                 onClick={() => setIndex((i) => Math.min(i - 1, items.length - 1))}
-                className="absolute top-1/2 left-1 px-2 py-1 bg-gray-200 rounded -translate-y-1/2"
+                className="opacity-60 absolute top-1/2 left-1 px-2 py-1 rounded -translate-y-1/2 text-[2rem] cursor-pointer hover:opacity-90"
                 disabled={index === 0}
             >
-                ◀
+                ‹
             </button>
 
             <button
                 onClick={() => setIndex((i) => Math.min(i + 1, items.length - 1))}
-                className="absolute top-1/2 right-1 px-2 py-1 bg-gray-200 rounded -translate-y-1/2"
+                className="opacity-60 absolute top-1/2 right-1 px-2 py-1 rounded -translate-y-1/2 text-[2rem] cursor-pointer hover:opacity-90"
                 disabled={index === items.length - 1}
             >
-                ▶
+                ›
             </button>
         </div>
     );

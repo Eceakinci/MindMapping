@@ -3,53 +3,62 @@ import React, { useState, useEffect } from "react";
 import Slider from "./Slider";
 
 interface DeleteComponentProps {
-    data: { type: string; article: string; word: string; example: string }[];
-    onDelete: (index: number) => void;
+  data: { type: string; article: string; word: string; example: string }[];
+  onDelete: (index: number) => void;
 }
 
 export default function DeleteComponent({ data, onDelete }: DeleteComponentProps) {
-    const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0);
 
-    // Make sure index stays in bounds if data changes
-    useEffect(() => {
-        if (index >= data.length && data.length > 0) {
-            setIndex(data.length - 1);
-        }
-    }, [data, index]);
+  useEffect(() => {
+    if (index >= data.length && data.length > 0) {
+      setIndex(data.length - 1);
+    }
+  }, [data, index]);
 
-    const handleConfirmDelete = () => {
-        if (data.length === 0) return;
-        onDelete(index);
-    };
+  const handleConfirmDelete = () => {
+    if (data.length === 0) return;
+    onDelete(index);
+  };
 
-    return (
-        <div className="relative w-fit mx-auto">
-            <Slider
-                items={data.map((item) => (
-                    <div key={item.word + item.type}>
-                        <p className="italic">{item.type}</p>
-                        <div>
-                            <strong>
-                                <span className="text-red-600">{item.article}</span>{" "}
-                                {item.word}
-                            </strong>
-                        </div>
-                        <p className="text-green-600">{item.example}</p>
-                    </div>
-                ))}
-                width={600}
-                classes="px-16 pt-6"
-                onIndexChange={setIndex} // Track current slider index
-            />
+  const buttonClass =
+    "px-4 py-2 rounded-[2px] border border-gray-700 font-semibold hover:bg-gray-100 transition";
 
-            <div className="flex justify-center mt-4">
-                <button
-                    className="px-4 py-2 bg-red-500 text-white rounded cursor-pointer hover:bg-red-600"
-                    onClick={handleConfirmDelete}
+  return (
+    <div className="relative w-[36vw] min-w-[300px] mx-auto shadow-md rounded-[2px] p-4">
+      <Slider
+        items={data.map((item) => (
+          <div key={item.word + item.type} className="space-y-2 px-4">
+            <p className="italic text-gray-600">{item.type}</p>
+            <div>
+              <strong>
+                <span
+                  className={
+                    item.article === "der"
+                      ? "text-blue-300"
+                      : item.article === "die"
+                      ? "text-red-300"
+                      : "text-green-300"
+                  }
                 >
-                    confirm delete
-                </button>
+                  {item.article}
+                </span>{" "}
+                <span className="opacity-80">{item.word}</span>
+              </strong>
             </div>
-        </div>
-    );
+            <p className="text-gray-800 opacity-70 italic">{item.example}</p>
+          </div>
+        ))}
+        width={600}
+        classes="px-16 pt-6"
+        onIndexChange={setIndex}
+      />
+
+      <div className="flex justify-center mt-4">
+        <button className={buttonClass} onClick={handleConfirmDelete}>
+          Confirm Delete
+        </button>
+      </div>
+    </div>
+  );
 }

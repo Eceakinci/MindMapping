@@ -1,5 +1,17 @@
 # Log
 
+
+- [x] 20251221      fix: page.tsx daha temiz olmali (kod)
+- [x] 20251221      docs: added readme draft
+- [x] 20251221      styling: color coding articles
+- [x] 20251221      styling: visual coherence between components
+- [x] 20251221      fix: alignment of component and vertical center
+- [x] 20251221      function: return to study after create, delete, update
+- [c] 20251221      fix: problems on page.tsx (task not clear)      
+- [x] 20251210      function: insert new items to json
+- [x] 20251210      function: delete
+- [x] 20251210      function: combine coherent buttons for crud
+- [x] 20251210      fix: .idea gitignore fix
 - [x] 20251205      create function created for json data
 - [x] 20251205      make input fields
 - [x] 20251202      slider with json data

@@ -20,7 +20,7 @@ export default function Page() {
             case "create":
                 return (
                     <InputComponent
-                        onSubmit={handleFormSubmit}
+                        onSubmit={handleCreate}
                         data={undefined}
                         onChange={undefined}
                     />
@@ -72,27 +72,7 @@ export default function Page() {
         }
     };
 
-    const handleFormSubmit = (formData) => {
-        updateJsonData(formData);
-    };
-
-    const handleDelete = (index: number) => {
-        setJsonData((prev) => {
-            const copy = [...prev];
-            copy.splice(index, 1);
-            return copy;
-        });
-    };
-
-    const handleUpdate = (index, updatedItem) => {
-        setJsonData((prev) =>
-            prev.map((item, i) => (i === index ? updatedItem : item))
-        );
-    };
-
-    // Function to update JSON data
-    const updateJsonData = (formData) => {
-        // Example: add new entry to JSON array
+    const handleCreate = (formData) => {
         const newData = [
             ...jsonData,
             {
@@ -103,60 +83,61 @@ export default function Page() {
             },
         ];
         setJsonData(newData);
+        setCurrentIndex(jsonData.length -1);
+        setMode("study");
+        console.log(jsonData.length -1)
+    };
+
+    const handleDelete = (index: number) => {
+        setJsonData((prev) => {
+            const copy = [...prev];
+            copy.splice(index, 1);
+            return copy;
+        });
+        setMode("study");
+    };
+
+    const handleUpdate = (index, updatedItem) => {
+        setJsonData((prev) =>
+            prev.map((item, i) => (i === index ? updatedItem : item))
+        );
+        setMode("study");
     };
 
     return (
-        <div className="flex flex-col justify-center m-auto w-120 p-4">
-            <div className="flex  justify-center gap-2 mb-4">
+        <div className="min-h-[90vh] flex flex-col max-w-[700px] mx-auto p-4">
+            {/* Top buttons */}
+            <div className="flex justify-center gap-2 mb-4">
                 <button
-                    className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded"
+                    className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded-[2px]"
                     onClick={() => setMode("create")}
                 >
-                    Create
+                    create
                 </button>
                 <button
-                    className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded"
+                    className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded-[2px]"
                     onClick={() => setMode("delete")}
                 >
-                    Delete
+                    delete
                 </button>
-                 <button className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded"
-                         onClick={() => setMode("update")}
-                 >Update
-                 </button>
                 <button
-                    className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded"
+                    className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded-[2px]"
+                    onClick={() => setMode("update")}
+                >
+                    update
+                </button>
+                <button
+                    className="cursor-pointer hover:bg-gray-200 px-3 py-1 rounded-[2px]"
                     onClick={() => setMode("study")}
                 >
-                    Study
+                    study
                 </button>
             </div>
 
-            {renderModeComponent()}
-            {/* <InputComponent
-                onSubmit={handleFormSubmit}
-                data={undefined}
-                onChange={undefined}
-            /> */}
-
-            {/* <Slider
-                width={600}
-                classes={"px-16 pt-6"}
-                items={jsonData.map((item) => (
-                    <div>
-                        <p className="italic">{item.type}</p>
-                        <div>
-                            <strong>
-                                <span className="text-red-600">
-                                    {item.article}
-                                </span>{" "}
-                                {item.word}
-                            </strong>
-                        </div>
-                        <p className="text-green-600">{item.example}</p>
-                    </div>
-                ))}
-            /> */}
+            {/* Centered content */}
+            <div className="flex-1 flex items-center justify-center">
+                {renderModeComponent()}
+            </div>
         </div>
     );
 }
