@@ -1,6 +1,6 @@
 # Log
 
-
+- [x] 20251223      fix: Index problem of create and delete
 - [x] 20251221      fix: page.tsx daha temiz olmali (kod)
 - [x] 20251221      docs: added readme draft
 - [x] 20251221      styling: color coding articles

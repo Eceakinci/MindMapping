@@ -6,6 +6,7 @@ type SwiperProps = {
     width?: number;
     classes?: string;
     onIndexChange?: (index: number) => void; // optional callback for parent
+    startIndex?: number;
 };
 
 export default function Slider({
@@ -13,8 +14,9 @@ export default function Slider({
     width = 300,
     classes,
     onIndexChange,
+    startIndex
 }: SwiperProps) {
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(startIndex);
     const startX = useRef<number | null>(null);
 
     // Notify parent of initial index

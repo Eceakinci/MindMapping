@@ -15,6 +15,10 @@ export default function Page() {
     //     console.log("jsonData updated:", jsonData);
     // }, [jsonData]);
 
+    useEffect(() => {
+        console.log("currentindex updated:", currentIndex);
+    }, [currentIndex]);
+
     const renderModeComponent = () => {
         switch (mode) {
             case "create":
@@ -30,7 +34,8 @@ export default function Page() {
                 return (
                     <DeleteComponent
                         data={jsonData}
-                        onDelete={(index: number) => handleDelete(index)}
+                        onDelete={(currentIndex: number) => handleDelete(currentIndex)}
+                        currentIndex={currentIndex}
                     />
                 );
 
@@ -49,6 +54,7 @@ export default function Page() {
                     <Slider
                         width={600}
                         classes={"px-16 pt-6"}
+                        startIndex={currentIndex}
                         onIndexChange={setCurrentIndex}
                         items={jsonData.map((item) => (
                             <div>
@@ -83,9 +89,8 @@ export default function Page() {
             },
         ];
         setJsonData(newData);
-        setCurrentIndex(jsonData.length -1);
+        setCurrentIndex(jsonData.length);
         setMode("study");
-        console.log(jsonData.length -1)
     };
 
     const handleDelete = (index: number) => {
