@@ -1,5 +1,12 @@
 # Log
 
+- [x] 20251224      fix: kelimenin unique oldugunu kontrol et
+- [x] 20251224      function: Input elementler must olmali
+- [x] 20251224      feature: consistency korumak icin girilen text'i full lowercase'e cekmek
+- [x] 20251224      added: utils on string manipulations
+- [x] 20251224      styling: add color code to articles
+- [x] 20251224      fix: when func delete deletes last element returns to empty object in slider
+- [x] 20251223      fix: return index after update (already fixed with previous)
 - [x] 20251223      fix: Index problem of create and delete
 - [x] 20251221      fix: page.tsx daha temiz olmali (kod)
 - [x] 20251221      docs: added readme draft

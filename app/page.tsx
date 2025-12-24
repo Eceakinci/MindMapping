@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react";
 import data from "../data/data.json";
 import Slider from "../src/components/Slider";
-import InputComponent from "../src/components/InputComponent";
+import { toProperCase } from "../src/utils/string";
+import InputComponent from "../src/components/CreateComponent";
 import DeleteComponent from "../src/components/DeleteComponent";
 import UpdateComponent from "../src/components/UpdateComponent";
 
@@ -11,12 +12,8 @@ export default function Page() {
     const [mode, setMode] = useState("study");
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // useEffect(() => {
-    //     console.log("jsonData updated:", jsonData);
-    // }, [jsonData]);
-
     useEffect(() => {
-        console.log("currentindex updated:", currentIndex);
+        // console.log("currentindex updated:", currentIndex);
     }, [currentIndex]);
 
     const renderModeComponent = () => {
@@ -25,7 +22,7 @@ export default function Page() {
                 return (
                     <InputComponent
                         onSubmit={handleCreate}
-                        data={undefined}
+                        data={jsonData}
                         onChange={undefined}
                     />
                 );
@@ -34,7 +31,9 @@ export default function Page() {
                 return (
                     <DeleteComponent
                         data={jsonData}
-                        onDelete={(currentIndex: number) => handleDelete(currentIndex)}
+                        onDelete={(currentIndex: number) =>
+                            handleDelete(currentIndex)
+                        }
                         currentIndex={currentIndex}
                     />
                 );
@@ -52,24 +51,41 @@ export default function Page() {
             case "study":
                 return (
                     <Slider
-                        width={600}
-                        classes={"px-16 pt-6"}
                         startIndex={currentIndex}
-                        onIndexChange={setCurrentIndex}
                         items={jsonData.map((item) => (
-                            <div>
-                                <p className="italic">{item.type}</p>
+                            <div
+                                key={item.word + item.type}
+                                className="space-y-2 px-4"
+                            >
+                                <p className="italic text-gray-600">
+                                    {item.type}
+                                </p>
                                 <div>
                                     <strong>
-                                        <span className="text-red-600">
+                                        <span
+                                            className={
+                                                item.article === "der"
+                                                    ? "text-blue-300"
+                                                    : item.article === "die"
+                                                    ? "text-red-300"
+                                                    : "text-green-300"
+                                            }
+                                        >
                                             {item.article}
                                         </span>{" "}
-                                        {item.word}
+                                        <span className="opacity-80">
+                                            {toProperCase(item.word)}
+                                        </span>
                                     </strong>
                                 </div>
-                                <p className="text-green-600">{item.example}</p>
+                                <p className="text-gray-800 opacity-70 italic">
+                                    {item.example}
+                                </p>
                             </div>
                         ))}
+                        width={600}
+                        classes="px-16 pt-6"
+                        onIndexChange={setCurrentIndex}
                     />
                 );
 
@@ -99,6 +115,7 @@ export default function Page() {
             copy.splice(index, 1);
             return copy;
         });
+        setCurrentIndex(index - 1 != 0 ? index - 1 : 0);
         setMode("study");
     };
 
