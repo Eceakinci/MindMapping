@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "data": [
+    {
+      "article": "der",
+      "word": "Apfel",
+      "type": "noun",
+      "example": "Der Apfel ist rot."
+    },
+    {
+      "article": "die",
+      "word": "Blume",
+      "type": "noun",
+      "example": "Die Blume riecht gut."
+    },
+    {
+      "article": "das",
+      "word": "Buch",
+      "type": "noun",
+      "example": "Das Buch liegt auf dem Tisch."
+    },
+    {
+      "article": "der",
+      "word": "Hund",
+      "type": "noun",
+      "example": "Der Hund schläft im Garten."
+    },
+    {
+      "article": "die",
+      "word": "Katze",
+      "type": "noun",
+      "example": "Die Katze trinkt Milch."
+    },
+    {
+      "article": "das",
+      "word": "Auto",
+      "type": "noun",
+      "example": "Das Auto fährt schnell."
+    },
+    {
+      "article": "der",
+      "word": "Tisch",
+      "type": "noun",
+      "example": "Der Tisch ist aus Holz."
+    },
+    {
+      "article": "die",
+      "word": "Lampe",
+      "type": "noun",
+      "example": "Die Lampe steht auf dem Schreibtisch."
+    },
+    {
+      "article": "das",
+      "word": "Fenster",
+      "type": "noun",
+      "example": "Das Fenster ist offen."
+    },
+    {
+      "article": "die",
+      "word": "Tür",
+      "type": "noun",
+      "example": "Die Tür ist geschlossen."
+    }
+  ]
+}

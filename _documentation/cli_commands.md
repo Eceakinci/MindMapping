@@ -1,0 +1,13 @@
+### 1. To fetch smt from other branch
+ - git fetch
+ - git merge origin/{branch_name}
+
+### 2. Create new branch
+  - git checkout -b <branch-name>
+
+### 3. commit
+  - git status
+  - git add .
+  - git status
+  - git commit -m "{commit_message}"
+  - git push
