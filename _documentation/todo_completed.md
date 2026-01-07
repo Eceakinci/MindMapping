@@ -1,5 +1,7 @@
 # Log
 
+
+
 - [x] 20251224      fix: kelimenin unique oldugunu kontrol et
 - [x] 20251224      function: Input elementler must olmali
 - [x] 20251224      feature: consistency korumak icin girilen text'i full lowercase'e cekmek
