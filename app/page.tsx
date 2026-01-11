@@ -16,6 +16,38 @@ export default function Page() {
         // console.log("currentindex updated:", currentIndex);
     }, [currentIndex]);
 
+    const downloadJSON = (data: unknown, filename = "data.json") => {
+        const json = JSON.stringify(data, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+
+        URL.revokeObjectURL(url);
+    };
+
+    const uploadJSON = async (file: File) => {
+        try {
+            const text = await file.text();
+            const parsed = JSON.parse(text);
+
+            // If you exported raw array
+            if (!Array.isArray(parsed)) {
+                throw new Error("Invalid JSON format");
+            }
+
+            setJsonData(parsed);
+            setCurrentIndex(0);
+            setMode("study");
+        } catch (err) {
+            alert("Failed to import JSON file");
+            console.error(err);
+        }
+    };
+
     const renderModeComponent = () => {
         switch (mode) {
             case "create":
@@ -159,6 +191,30 @@ export default function Page() {
             {/* Centered content */}
             <div className="flex-1 flex items-center justify-center">
                 {renderModeComponent()}
+            </div>
+
+            {/* import export buttons */}
+            <div className="fixed top-4 right-4 flex gap-2">
+                <label className="w-20 h-8 flex items-center justify-center rounded-md hover:bg-rose-400 cursor-pointer">
+                    upload
+                    <input
+                        type="file"
+                        accept="application/json"
+                        className="hidden"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) uploadJSON(file);
+                            e.target.value = ""; // allow re-uploading same file
+                        }}
+                    />
+                </label>
+
+                <label
+                    className="w-20 h-8 flex items-center justify-center rounded-md hover:bg-rose-400 cursor-pointer"
+                    onClick={() => downloadJSON(jsonData, "vocab.json")}
+                >
+                    download
+                </label>
             </div>
         </div>
     );
