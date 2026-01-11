@@ -14,7 +14,7 @@ export default function Slider({
     width = 300,
     classes,
     onIndexChange,
-    startIndex
+    startIndex,
 }: SwiperProps) {
     const [index, setIndex] = useState(startIndex);
     const startX = useRef<number | null>(null);
@@ -24,9 +24,11 @@ export default function Slider({
         onIndexChange?.(index);
     }, [index]);
 
+    const [isTransitioning, setIsTransitioning] = useState(true);
 
     const next = () =>
         setIndex((i) => {
+            console.log("potato");
             const newIndex = Math.min(i + 1, items.length - 1);
             onIndexChange?.(newIndex);
             return newIndex;
@@ -34,7 +36,10 @@ export default function Slider({
 
     const prev = () =>
         setIndex((i) => {
-            const newIndex = Math.max(i - 1, 0);
+            console.log("potato");
+
+            let newIndex = i - 1 < 0 ? items.length - 1 : i - 1;
+            console.log("potato:" + newIndex);
             onIndexChange?.(newIndex);
             return newIndex;
         });
@@ -56,12 +61,17 @@ export default function Slider({
     };
 
     return (
-        <div className="overflow-hidden relative" style={{ width }}>
+        <div
+            className="overflow-hidden relative"
+            style={{ width }}
+        >
             {/* Slides container */}
             <div
                 className="flex"
                 style={{
-                    transition: "transform 0.3s ease",
+                    transition: isTransitioning
+                        ? "transform 0.3s ease"
+                        : "none",
                     transform: `translateX(-${index * width}px)`,
                 }}
                 onTouchStart={handleTouchStart}
@@ -80,17 +90,30 @@ export default function Slider({
 
             {/* Prev / Next buttons */}
             <button
-                onClick={() => setIndex((i) => Math.min(i - 1, items.length - 1))}
+                onClick={() => {
+                    setIndex((i) => {
+                        i == 0
+                            ? setIsTransitioning(false)
+                            : setIsTransitioning(true);
+                        return i == 0 ? items.length - 1 : i - 1;
+                    });
+                }}
                 className="opacity-60 absolute top-1/2 left-1 px-2 py-1 rounded -translate-y-1/2 text-[2rem] cursor-pointer hover:opacity-90"
-                disabled={index === 0}
             >
                 ‹
             </button>
 
             <button
-                onClick={() => setIndex((i) => Math.min(i + 1, items.length - 1))}
+                onClick={() =>
+                    setIndex((i) => {
+                        i == items.length - 1
+                            ? setIsTransitioning(false)
+                            : setIsTransitioning(true);
+
+                        return i == items.length - 1 ? 0 : i + 1;
+                    })
+                }
                 className="opacity-60 absolute top-1/2 right-1 px-2 py-1 rounded -translate-y-1/2 text-[2rem] cursor-pointer hover:opacity-90"
-                disabled={index === items.length - 1}
             >
                 ›
             </button>

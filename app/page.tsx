@@ -11,6 +11,12 @@ export default function Page() {
     const [jsonData, setJsonData] = useState(data.data);
     const [mode, setMode] = useState("study");
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [helpMessage, setHelpMessage] = useState<string | null>(null);
+
+    const showHelpMessage = (message: string, duration = 3000) => {
+        setHelpMessage(message);
+        setTimeout(() => setHelpMessage(null), duration);
+    };
 
     useEffect(() => {
         // console.log("currentindex updated:", currentIndex);
@@ -34,17 +40,15 @@ export default function Page() {
             const text = await file.text();
             const parsed = JSON.parse(text);
 
-            // If you exported raw array
-            if (!Array.isArray(parsed)) {
-                throw new Error("Invalid JSON format");
-            }
+            if (!Array.isArray(parsed)) throw new Error();
 
             setJsonData(parsed);
             setCurrentIndex(0);
             setMode("study");
-        } catch (err) {
-            alert("Failed to import JSON file");
-            console.error(err);
+
+            showHelpMessage("You have uploaded your own data");
+        } catch {
+            showHelpMessage("Invalid JSON file");
         }
     };
 
@@ -215,6 +219,15 @@ export default function Page() {
                 >
                     download
                 </label>
+            </div>
+
+            {/* overrideable help message */}
+            <div className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                {true && (
+                    <div className="px-4 py-2 rounded-md text-sm">
+                        {helpMessage}
+                    </div>
+                )}
             </div>
         </div>
     );
