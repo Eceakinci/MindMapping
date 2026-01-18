@@ -12,6 +12,9 @@ export default function Page() {
     const [mode, setMode] = useState("study");
     const [currentIndex, setCurrentIndex] = useState(0);
     const [helpMessage, setHelpMessage] = useState<string | null>(null);
+    const [overlay, setOverlay] = useState(true)
+    const [isDragging, setIsDragging] = useState(false);
+
 
     const showHelpMessage = (message: string, duration = 3000) => {
         setHelpMessage(message);
@@ -165,6 +168,43 @@ export default function Page() {
 
     return (
         <div className="min-h-[90vh] flex flex-col max-w-[700px] mx-auto p-4">
+            {/* Overlay */}
+            {overlay && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+                <div className="w-1/2 h-1/2 bg-white flex flex-col justify-center gap-8 px-36">
+                    <label className="border border-dashed border-stone-500/75 p-4"
+                           onDragOver={(e) => {
+                               e.preventDefault(); // REQUIRED
+                               setIsDragging(true);
+                           }}
+                           onDragLeave={() => setIsDragging(false)}
+                           onDrop={(e) => {
+                               e.preventDefault();
+                               setIsDragging(false);
+
+                               const file = e.dataTransfer.files?.[0];
+                               if (file) uploadJSON(file);
+                               setOverlay(false)
+                           }}>
+                        DROP
+                        <input
+                            type="file"
+                            accept="application/json"
+                            className="hidden"
+                            onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) uploadJSON(file);
+                                e.target.value = ""; // allow re-uploading same file
+                                setOverlay(false)
+                            }}
+                        />
+                    </label>
+                    <button className="border border-black-600 p-4"
+                            onClick={() => setOverlay(false)}
+                    >CLOSE</button>
+                </div>
+            </div>}
+
+
             {/* Top buttons */}
             <div className="flex justify-center gap-2 mb-4">
                 <button
