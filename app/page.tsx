@@ -101,10 +101,10 @@ export default function Page() {
                                         <span
                                             className={
                                                 item.article === "der"
-                                                    ? "text-blue-300"
+                                                    ? "text-blue-600"
                                                     : item.article === "die"
-                                                    ? "text-red-300"
-                                                    : "text-green-300"
+                                                    ? "text-red-600"
+                                                    : "text-green-600"
                                             }
                                         >
                                             {item.article}
@@ -120,8 +120,9 @@ export default function Page() {
                             </div>
                         ))}
                         width={600}
-                        classes="px-16 pt-6"
+                        classes="px-16 py-10"
                         onIndexChange={setCurrentIndex}
+                        isStudy={true}
                     />
                 );
 

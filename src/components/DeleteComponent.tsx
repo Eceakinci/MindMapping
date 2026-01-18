@@ -53,8 +53,7 @@ export default function DeleteComponent({ data, onDelete, currentIndex }: Delete
             <p className="text-gray-800 opacity-70 italic">{item.example}</p>
           </div>
         ))}
-        width={600}
-        classes="px-16 pt-6"
+        classes="px-16 pt-6 w-full"
         onIndexChange={setIndex}
       />
 
