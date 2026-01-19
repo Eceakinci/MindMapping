@@ -1,5 +1,8 @@
 # todo
 
+- checklist after feature or to do finish (such as create a progress visual)
+- dropbox setup for progress and reference visuals
+
 - add: data expansion -> meaning of word
 - accessibility: responsive tablet, mobile, pc / horizontal, vertical
 - styling: card seklinde yap
