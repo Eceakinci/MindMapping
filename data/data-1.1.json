@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "version": "1.1",
+    "language": "de"
+  },
+  "data": {
+    "apfel": {
+      "word": "apfel",
+      "article": "der",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Der Apfel ist rot."]
+    },
+    "blume": {
+      "word": "blume",
+      "article": "die",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Die Blume riecht gut."]
+    },
+    "buch": {
+      "word": "buch",
+      "article": "das",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Das Buch liegt auf dem Tisch."]
+    },
+    "hund": {
+      "word": "hund",
+      "article": "der",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Der Hund schläft im Garten."]
+    },
+    "katze": {
+      "word": "katze",
+      "article": "die",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Die Katze trinkt Milch."]
+    },
+    "auto": {
+      "word": "auto",
+      "article": "das",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Das Auto fährt schnell."]
+    },
+    "tisch": {
+      "word": "tisch",
+      "article": "der",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Der Tisch ist aus Holz."]
+    },
+    "lampe": {
+      "word": "lampe",
+      "article": "die",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Die Lampe steht auf dem Schreibtisch."]
+    },
+    "fenster": {
+      "word": "fenster",
+      "article": "das",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Das Fenster ist offen."]
+    },
+    "tür": {
+      "word": "tür",
+      "article": "die",
+      "type": "noun",
+      "meanings": [],
+      "examples": ["Die Tür ist geschlossen."]
+    }
+  }
+}

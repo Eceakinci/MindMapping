@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-import data from "../data/data.json";
+import data from "../data/data-1.0.json";
 import Slider from "../src/components/Slider";
 import { toProperCase } from "../src/utils/string";
 import InputComponent from "../src/components/CreateComponent";
 import DeleteComponent from "../src/components/DeleteComponent";
 import UpdateComponent from "../src/components/UpdateComponent";
+import Overlay from "../src/components/Overlay";
+
 
 export default function Page() {
     const [jsonData, setJsonData] = useState(data.data);
@@ -169,40 +171,11 @@ export default function Page() {
     return (
         <div className="min-h-[90vh] flex flex-col max-w-[700px] mx-auto p-4">
             {/* Overlay */}
-            {overlay && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-                <div className="w-1/2 h-1/2 bg-white flex flex-col justify-center gap-8 px-36">
-                    <label className="border border-dashed border-stone-500/75 p-4"
-                           onDragOver={(e) => {
-                               e.preventDefault(); // REQUIRED
-                               setIsDragging(true);
-                           }}
-                           onDragLeave={() => setIsDragging(false)}
-                           onDrop={(e) => {
-                               e.preventDefault();
-                               setIsDragging(false);
-
-                               const file = e.dataTransfer.files?.[0];
-                               if (file) uploadJSON(file);
-                               setOverlay(false)
-                           }}>
-                        DROP
-                        <input
-                            type="file"
-                            accept="application/json"
-                            className="hidden"
-                            onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                if (file) uploadJSON(file);
-                                e.target.value = ""; // allow re-uploading same file
-                                setOverlay(false)
-                            }}
-                        />
-                    </label>
-                    <button className="border border-black-600 p-4"
-                            onClick={() => setOverlay(false)}
-                    >CLOSE</button>
-                </div>
-            </div>}
+            <Overlay
+                visible={overlay}
+                onClose={() => setOverlay(false)}
+                onUpload={uploadJSON}
+            />
 
 
             {/* Top buttons */}
@@ -240,7 +213,7 @@ export default function Page() {
 
             {/* import export buttons */}
             <div className="fixed top-4 right-4 flex gap-2">
-                <label className="w-20 h-8 flex items-center justify-center rounded-md hover:bg-rose-400 cursor-pointer">
+                {/* <label className="w-20 h-8 flex items-center justify-center rounded-md hover:bg-rose-400 cursor-pointer">
                     upload
                     <input
                         type="file"
@@ -249,16 +222,16 @@ export default function Page() {
                         onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) uploadJSON(file);
-                            e.target.value = ""; // allow re-uploading same file
+                            e.target.value = ""; 
                         }}
                     />
-                </label>
+                </label> */}
 
                 <label
-                    className="w-20 h-8 flex items-center justify-center rounded-md hover:bg-rose-400 cursor-pointer"
+                    className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-rose-400 cursor-pointer"
                     onClick={() => downloadJSON(jsonData, "vocab.json")}
                 >
-                    download
+                    <img src="icons/download.svg" alt="Download" className="w-6 h-6" />
                 </label>
             </div>
 

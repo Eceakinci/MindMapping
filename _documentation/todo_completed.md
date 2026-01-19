@@ -1,6 +1,9 @@
 # Log
 
 
+- [x] 20260119      added new data model proposal
+- [x] 20260119      added icon for download
+- [x] 20260118      added overlay for started (visual cue for user to adapt on method)
 - [x] 20260111      added loop on trasitions 
 - [x] 20260111      added changeable help message component
 - [x] 20260111      basic upload/download buttons for json data
