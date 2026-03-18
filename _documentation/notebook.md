@@ -1,3 +1,6 @@
+# Drive Link
+https://drive.google.com/drive/folders/1f77CYx3CClqVNAkWMieSEuxRYilhKbiz?usp=sharing
+
 # Notebook
 - start: 02-Dec-2025
 
