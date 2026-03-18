@@ -1,10 +1,11 @@
 # todo
 
-- checklist after feature or to do finish (such as create a progress visual)
-- dropbox setup for progress and reference visuals
-
-- add: data expansion -> meaning of word
+- production: test
 - accessibility: responsive tablet, mobile, pc / horizontal, vertical
+    - style layouting for phone, tablet, pc
+- add: data expansion -> meaning of word
+
+- checklist after feature or to do finish (such as create a progress visual)
 - styling: card seklinde yap
 
 

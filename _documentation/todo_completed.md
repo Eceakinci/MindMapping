@@ -1,6 +1,6 @@
 # Log
 
-
+- [x] 20260318      dropbox setup for progress and reference visuals
 - [x] 20260119      added new data model proposal
 - [x] 20260119      added icon for download
 - [x] 20260118      added overlay for started (visual cue for user to adapt on method)

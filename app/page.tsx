@@ -124,7 +124,7 @@ export default function Page() {
                                 </p>
                             </div>
                         ))}
-                        width={600}
+                        width={"600"}
                         classes="px-16 py-10"
                         onIndexChange={setCurrentIndex}
                         isStudy={true}

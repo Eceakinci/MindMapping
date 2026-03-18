@@ -1,5 +1,16 @@
 #
 
+- ornekler
+    - dribbble.com
+    - quizlet 
+    - https://tr.pinterest.com/
+
+- grrive binary kurulumu
+    - ece drive inda binary icin klasor acti
+    - gdrive desktop ile ekledik
+        - sync test biri bir sey eklediginde diger bilgisayara gidiyor mu
+    - 
+
 - import export
 
 - button upload / download
