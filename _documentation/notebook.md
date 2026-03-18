@@ -37,6 +37,26 @@
 - run deployment
 - run release
 
+- deploy
+    - create deploy branch
+    - publish deploy branch
+
+    - create next.config.js
+    - update package.json 
+        - scriptler
+
+    > npm run build
+    > npm run export
+
+    - preview
+        - npx serve out
+
+    - .gitignore out/
+    - gh pagesdan aktive et
+    - check 
+
+
+
 # Build 
 - install
 - update
