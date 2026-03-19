@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 type SwiperProps = {
     items: React.ReactNode[];
-    width?: string;
+    width?: number;
     classes?: string;
     onIndexChange?: (index: number) => void; // optional callback for parent
     startIndex?: number;
@@ -12,7 +12,7 @@ type SwiperProps = {
 
 export default function Slider({
     items,
-    width = "100%",
+    width,
     classes,
     onIndexChange,
     startIndex,

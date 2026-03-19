@@ -1,3 +1,5 @@
+## Git Commands
+
 ### 1. To fetch smt from other branch
  - git fetch
  - git merge origin/{branch_name}
@@ -11,3 +13,10 @@
   - git status
   - git commit -m "{commit_message}"
   - git push
+
+-------------------------------------------------------
+
+## Npm Commands
+
+### 4. execute the docs/out folder
+- npx serve docs

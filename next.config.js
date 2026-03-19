@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
-    basePath: '/MindMapping',
-    assetPrefix: '/MindMapping/',
+    basePath: '',
+    trailingSlash: true,
+
     images: {
         unoptimized: true,
     },

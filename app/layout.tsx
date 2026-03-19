@@ -5,8 +5,11 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
+
         <html lang="en">
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <head>
+            <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        </head>
         <body>{children}</body>
         </html>
     )
