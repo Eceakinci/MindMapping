@@ -2,7 +2,7 @@
 const nextConfig = {
     output: 'export',
     distDir: 'docs',
-    basePath: process.env.GITHUB_PAGES === 'true' ? '/MindMapping' : '',
+    basePath: '/MindMapping',
     trailingSlash: true,
     images: {
         unoptimized: true,
