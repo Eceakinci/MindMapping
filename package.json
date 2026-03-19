@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && echo '' > docs/.nojekyll",
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
