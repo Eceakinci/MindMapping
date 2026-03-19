@@ -5,6 +5,8 @@
     - style layouting for phone, tablet, pc
 - add: data expansion -> meaning of word
 
+- todo: remove cdn depndency on tailwind
+
 - checklist after feature or to do finish (such as create a progress visual)
 - styling: card seklinde yap
 

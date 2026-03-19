@@ -40,6 +40,26 @@ https://drive.google.com/drive/folders/1f77CYx3CClqVNAkWMieSEuxRYilhKbiz?usp=sha
 - run deployment
 - run release
 
+- deploy
+    - create deploy branch
+    - publish deploy branch
+
+    - create next.config.js
+    - update package.json 
+        - scriptler
+
+    > npm run build
+    > npm run export
+
+    - preview
+        - npx serve out
+
+    - .gitignore out/
+    - gh pagesdan aktive et
+    - check 
+
+
+
 # Build 
 - install
 - update
