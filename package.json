@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && echo '' > docs/.nojekyll",
+    "build:prod": "set GITHUB_PAGES=true && next build && echo '' > docs/.nojekyll",
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
