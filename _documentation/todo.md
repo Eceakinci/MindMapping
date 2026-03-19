@@ -6,6 +6,8 @@
 - add: data expansion -> meaning of word
 
 - todo: remove cdn depndency on tailwind
+- todo: package.json build ve build:prod komutlarini calisir konuma getirmek
+  - su an build calisiyor.
 
 - checklist after feature or to do finish (such as create a progress visual)
 - styling: card seklinde yap
