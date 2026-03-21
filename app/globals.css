@@ -1,5 +1,156 @@
+/* --------------------------------------------------------------------------------------- 
+                information
+--------------------------------------------------------------------------------------- */
+/*
+    Description : Global CSS for Project Mindmapping 
+    Version     : 0.1
+    Last Update : 21-Mar-2026
+    Author      : --
+    License     : MIT
+    License URL : https://www.tldrlegal.com/license/mit-license
+*/
+
+
+/* --------------------------------------------------------------------------------------- 
+                imports
+--------------------------------------------------------------------------------------- */
+
 @import "tailwindcss";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* --------------------------------------------------------------------------------------- 
+                main
+--------------------------------------------------------------------------------------- */
+
+:root {
+    --col-1: black;
+    --col-2: black;
+    --col-3: black;
+    --bg-1: #f2f2f2; 
+    --bg-2: #f6f6f6;
+    --bg-3: #e8eced;
+    --bg-trans-1: #f6f6f6cc;
+    --bg-trans-2: #f6f6f666;
+    --bg-rev-1: black;
+    --bg-rev-2: black;
+
+    --page-width-mobile: 98%;
+    --page-width-tablet: 90%;
+    --page-width-pc: 52%;
+    --page-width: var(--page-width-pc);
+    --page-width-max: 1920px;
+
+    --font-size: 1rem;
+
+    /* ---------- Fonts ----------- */
+    --main-font: default;
+    --title-font: var(--main-font);
+    --desc-font: var(--main-font);
+    --ui-font: var(--main-font);
+    --caption-font: var(--main-font);
+
+    width: var(--page-width);
+}
+
+/* Mobile: up to 480px */
+@media (max-width: 480px) {
+    :root {
+        --page-width: var(--page-width-mobile);
+        --font-size: 0.7rem;
+    }
+
+    .mobile-only {
+    }
+}
+
+/* Tablet: 481px to 1024px */
+@media (min-width: 481px) and (max-width: 1024px) {
+    :root {
+        --page-width: var(--page-width-tablet);
+        --font-size: 0.9rem;
+    }
+
+    .tablet-only {
+    }
+}
+
+/* Desktop / PC: 1025px and above */
+@media (min-width: 1025px) {
+    :root {
+        --page-width: var(--page-width-pc);
+        --font-size: 1rem;
+    }
+
+    .desktop-only {
+        /* styles for desktop */
+    }
+}
+
+
+body {
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, "Open Sans", "Helvetica Neue", Raleway, "Raleway",
+        sans-serif, monospace;
+    font-family: var(--main-font), sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-1);
+    color: var(--col-1);
+    transition: background-color 0.2s;
+}
+
+/* --------------------------------------------------------------------------------------- 
+                color modes
+--------------------------------------------------------------------------------------- */
+[color-scheme="dark"],
+.dark-mode {}
+
+[color-scheme="light"],
+.light-mode {}
+
+[color-scheme="sepia"],
+.sepia-mode {}
+
+
+/* --------------------------------------------------------------------------------------- 
+                experimental
+--------------------------------------------------------------------------------------- */
+/* Base overlay wrapper */
+.responsive-overlay {
+  position: relative;
+  margin: 0 auto;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: width 0.3s, height 0.3s;
+}
+
+/* Mobile overlay */
+.overlay-mobile {
+  width: 360px;    /* typical mobile width */
+  height: 640px;   /* typical mobile height */
+}
+
+/* Tablet overlay */
+.overlay-tablet {
+  width: 768px;    /* typical tablet width */
+  height: 1024px;  /* typical tablet height */
+}
+
+/* Desktop overlay */
+.overlay-desktop {
+  width: 1024px;   /* desktop width */
+  height: 768px;   /* desktop height */
+}
+
+/* Optional: center content inside overlay */
+.responsive-overlay > * {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}

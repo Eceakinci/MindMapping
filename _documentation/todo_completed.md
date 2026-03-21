@@ -1,7 +1,7 @@
 # Log
 
 
-
+- [x] 20260321      added experimental global css
 - [x] 20260321      added toolbox for fast switch between different screen size testing
 - [x] 20260321      added lucide-react dependency for icons
 - [x] 20260318      dropbox setup for progress and reference visuals
