@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    A project for self-directed vocabulary expansion that also tracks statistics and incorporates general computer science concepts. An experimental, evolving project exploring new horizons in learning along the way.
+    A project for self-directed vocabulary expansion that also tracks statistics and incorporates general computer science concepts. An experimental, evolving project for exploring and learning along the way.
 </p>
 
 <p align="right">
@@ -16,13 +16,14 @@
 ## Features
 
 - [x] Basic data manipulation through create / delete / update / delete functions
+- [x] Json import / export
 
 
 ------------------------------------------------------------------------------------------
 
 ## Roadmap 
+- [ ] Responsive ui
 - [ ] Database interaction
-- [ ] Json import / export
 - [ ] Statistics for content
 
 
