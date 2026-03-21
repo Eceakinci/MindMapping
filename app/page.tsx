@@ -6,10 +6,12 @@ import { toProperCase } from "../src/utils/string";
 import InputComponent from "../src/components/CreateComponent";
 import DeleteComponent from "../src/components/DeleteComponent";
 import UpdateComponent from "../src/components/UpdateComponent";
+import DevTools from "../src/components/DevTools";
 import Overlay from "../src/components/Overlay";
 
 
 export default function Page() {
+    const DEV_TOOLS = false;
     const [jsonData, setJsonData] = useState(data.data);
     const [mode, setMode] = useState("study");
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -170,6 +172,10 @@ export default function Page() {
 
     return (
         <div className="min-h-[90vh] flex flex-col max-w-[700px] mx-auto p-4">
+
+            {/* Dev Tools */}
+            <DevTools visible={DEV_TOOLS} />
+
             {/* Overlay */}
             <Overlay
                 visible={overlay}
@@ -213,19 +219,6 @@ export default function Page() {
 
             {/* import export buttons */}
             <div className="fixed top-4 right-4 flex gap-2">
-                {/* <label className="w-20 h-8 flex items-center justify-center rounded-md hover:bg-rose-400 cursor-pointer">
-                    upload
-                    <input
-                        type="file"
-                        accept="application/json"
-                        className="hidden"
-                        onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) uploadJSON(file);
-                            e.target.value = ""; 
-                        }}
-                    />
-                </label> */}
 
                 <label
                     className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-rose-400 cursor-pointer"

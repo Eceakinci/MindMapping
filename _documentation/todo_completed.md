@@ -1,5 +1,9 @@
 # Log
 
+
+
+- [x] 20260321      added toolbox for fast switch between different screen size testing
+- [x] 20260321      added lucide-react dependency for icons
 - [x] 20260318      dropbox setup for progress and reference visuals
 - [x] 20260119      added new data model proposal
 - [x] 20260119      added icon for download
