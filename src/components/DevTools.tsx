@@ -3,31 +3,66 @@ import { useState, useEffect } from "react";
 import { Smartphone, Tablet, Monitor } from "lucide-react";
 
 type Props = {
-  visible: boolean;
+    visible: boolean;
+    device: string;
+    orientation: string;
+    setDevice: (d: string) => void;
+    setOrientation: (o: string) => void;
 };
 
 // Simple SVG icons for orientation
 const PortraitIcon = () => (
-  <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="12" height="18" x="2" y="1" stroke="currentColor" strokeWidth="2" rx="2" />
-  </svg>
+    <svg
+        width="16"
+        height="20"
+        viewBox="0 0 16 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <rect
+            width="12"
+            height="18"
+            x="2"
+            y="1"
+            stroke="currentColor"
+            strokeWidth="2"
+            rx="2"
+        />
+    </svg>
 );
 
 const LandscapeIcon = () => (
-  <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="18" height="12" x="1" y="2" stroke="currentColor" strokeWidth="2" rx="2" />
-  </svg>
+    <svg
+        width="20"
+        height="16"
+        viewBox="0 0 20 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <rect
+            width="18"
+            height="12"
+            x="1"
+            y="2"
+            stroke="currentColor"
+            strokeWidth="2"
+            rx="2"
+        />
+    </svg>
 );
 
-export default function DevTools({ visible }: Props) {
-  const [device, setDevice] = useState("desktop");
-  const [orientation, setOrientation] = useState("portrait");
+export default function DevTools({
+    visible,
+    device,
+    orientation,
+    setDevice,
+    setOrientation,
+}: Props) {
+    if (!visible) return null;
 
-  if (!visible) return null;
-
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.innerHTML = `
+    useEffect(() => {
+        const style = document.createElement("style");
+        style.innerHTML = `
       .dev-tools-container {
         position: fixed;
         left: 20px;
@@ -104,57 +139,57 @@ export default function DevTools({ visible }: Props) {
         background-color: #ddd;
       }
     `;
-    document.head.appendChild(style);
-    return () => document.head.removeChild(style);
-  }, []);
+        document.head.appendChild(style);
+        return () => document.head.removeChild(style);
+    }, []);
 
-  return (
-    <div className="dev-tools-container">
-      <div className="dev-tools-title">dev tools</div>
+    return (
+        <div className="dev-tools-container">
+            <div className="dev-tools-title">dev tools</div>
 
-      {/* Screen size row */}
-      <div className="dev-tools-row">
-        <div className="dev-tools-label">screen size</div>
-        <div className="dev-tools-buttons">
-          <button
-            className={device === "mobile" ? "active" : ""}
-            onClick={() => setDevice("mobile")}
-          >
-            <Smartphone size={16} />
-          </button>
-          <button
-            className={device === "tablet" ? "active" : ""}
-            onClick={() => setDevice("tablet")}
-          >
-            <Tablet size={16} />
-          </button>
-          <button
-            className={device === "desktop" ? "active" : ""}
-            onClick={() => setDevice("desktop")}
-          >
-            <Monitor size={16} />
-          </button>
+            {/* Screen size row */}
+            <div className="dev-tools-row">
+                <div className="dev-tools-label">screen size</div>
+                <div className="dev-tools-buttons">
+                    <button
+                        className={device === "mobile" ? "active" : ""}
+                        onClick={() => setDevice("mobile")}
+                    >
+                        <Smartphone size={16} />
+                    </button>
+                    <button
+                        className={device === "tablet" ? "active" : ""}
+                        onClick={() => setDevice("tablet")}
+                    >
+                        <Tablet size={16} />
+                    </button>
+                    <button
+                        className={device === "desktop" ? "active" : ""}
+                        onClick={() => setDevice("desktop")}
+                    >
+                        <Monitor size={16} />
+                    </button>
+                </div>
+            </div>
+
+            {/* Orientation row */}
+            <div className="dev-tools-row">
+                <div className="dev-tools-label">orientation</div>
+                <div className="dev-tools-buttons">
+                    <button
+                        className={orientation === "portrait" ? "active" : ""}
+                        onClick={() => setOrientation("portrait")}
+                    >
+                        <PortraitIcon />
+                    </button>
+                    <button
+                        className={orientation === "landscape" ? "active" : ""}
+                        onClick={() => setOrientation("landscape")}
+                    >
+                        <LandscapeIcon />
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-
-      {/* Orientation row */}
-      <div className="dev-tools-row">
-        <div className="dev-tools-label">orientation</div>
-        <div className="dev-tools-buttons">
-          <button
-            className={orientation === "portrait" ? "active" : ""}
-            onClick={() => setOrientation("portrait")}
-          >
-            <PortraitIcon />
-          </button>
-          <button
-            className={orientation === "landscape" ? "active" : ""}
-            onClick={() => setOrientation("landscape")}
-          >
-            <LandscapeIcon />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
