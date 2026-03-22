@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Smartphone, Tablet, Monitor } from "lucide-react";
+import { Smartphone, Tablet, Monitor, Sun, Moon, Brush } from "lucide-react";
 
 type Props = {
     visible: boolean;
@@ -10,7 +10,6 @@ type Props = {
     setOrientation: (o: string) => void;
 };
 
-// Simple SVG icons for orientation
 const PortraitIcon = () => (
     <svg
         width="16"
@@ -60,6 +59,8 @@ export default function DevTools({
 }: Props) {
     if (!visible) return null;
 
+    const [mode, setMode] = useState("light");
+
     useEffect(() => {
         const style = document.createElement("style");
         style.innerHTML = `
@@ -83,65 +84,57 @@ export default function DevTools({
         font-style: italic; 
       }
 
-      .dev-tools-row {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 6px;
-      }
+.dev-tools-row {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    align-items: center;           
+    gap: 8px;                       
+    margin-bottom: 6px;
+}
 
-      .dev-tools-label {
-        font-size: 0.75rem;
-        font-style: italic;
-        margin-right: 4px;
-        white-space: nowrap;
-      }
+.dev-tools-label {
+    text-align: right;              
+    font-size: 0.75rem;
+    font-style: italic;
+    white-space: nowrap;
+}
 
-      .dev-tools-buttons {
-        display: flex;
-      }
+.dev-tools-buttons {
+    display: flex;
+    gap: 4px;                       
+}
 
-      .dev-tools-buttons button {
-        flex: 1;
-        padding: 4px 10px;
-        border: 1px solid;
-        background-color: #fff;
-        cursor: pointer;
-        transition: background-color 0.2s, color 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+.dev-tools-buttons button {
+    width: 32px;                      
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
 
-      .dev-tools-buttons button:first-child {
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
-        border-right: none;
-      }
+.dev-tools-buttons button.active {
+    background-color: #333;
+    color: #fff;
+}
 
-      .dev-tools-buttons button:last-child {
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
-        border-left: none;
-      }
-
-      .dev-tools-buttons button:not(:first-child):not(:last-child) {
-        border-left: none;
-        border-right: none;
-      }
-
-      .dev-tools-buttons button.active {
-        background-color: #333;
-        color: #fff;
-      }
-
-      .dev-tools-buttons button:hover {
-        background-color: #ddd;
-      }
+.dev-tools-buttons button:hover {
+    background-color: #ddd;
+}
     `;
         document.head.appendChild(style);
         return () => document.head.removeChild(style);
     }, []);
+
+    const changeMode = (newMode: string) => {
+        setMode(newMode);
+        document.documentElement.setAttribute("data-theme", newMode);
+    };
 
     return (
         <div className="dev-tools-container">
@@ -187,6 +180,31 @@ export default function DevTools({
                         onClick={() => setOrientation("landscape")}
                     >
                         <LandscapeIcon />
+                    </button>
+                </div>
+            </div>
+
+            {/* Color mode row with icons */}
+            <div className="dev-tools-row">
+                <div className="dev-tools-label">color mode</div>
+                <div className="dev-tools-buttons">
+                    <button
+                        className={mode === "light" ? "active" : ""}
+                        onClick={() => changeMode("light")}
+                    >
+                        <Sun size={16} />
+                    </button>
+                    <button
+                        className={mode === "dark" ? "active" : ""}
+                        onClick={() => changeMode("dark")}
+                    >
+                        <Moon size={16} />
+                    </button>
+                    <button
+                        className={mode === "sepia" ? "active" : ""}
+                        onClick={() => changeMode("sepia")}
+                    >
+                        <Brush size={16} />
                     </button>
                 </div>
             </div>
